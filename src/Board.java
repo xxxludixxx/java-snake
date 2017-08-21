@@ -1,7 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Board extends JPanel implements ActionListener {
 
@@ -10,15 +13,15 @@ public class Board extends JPanel implements ActionListener {
     private final static int BOARDHEIGHT = 768;
     // Pixel Size
     private final static int PIXEL = 16;
+    private final static int TOTALPIXELS = (BOARDWIDTH * BOARDHEIGHT) / (PIXEL * PIXEL);
 
     private Timer timer;
 
-    private static int speed = 30;
+    private static int speed = 20;
 
     private Circle circle = new Circle();
 
     public Board() {
-
         setBackground(Color.BLACK);
         setFocusable(true);
 
@@ -31,15 +34,36 @@ public class Board extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        drawGradient(g);
+
         draw(g);
     }
 
     void draw(Graphics g) {
 
-        g.setColor(Color.green);
+        g.setColor(Color.red);
         drawCenteredCircle(g, circle.getCircleX(), circle.getCircleY(), circle.getCircleR());
 
         Toolkit.getDefaultToolkit().sync();
+    }
+
+    void drawGradient(Graphics g)
+    {
+        final BufferedImage image;
+        int[] Color1 = {255, 255, 0};
+        int[] Color2 = {42, 106, 255};
+        image = (BufferedImage) createImage(BOARDWIDTH, BOARDHEIGHT);
+        WritableRaster raster = image.getRaster();
+        for (int row = 0; row < BOARDHEIGHT; row++) {
+            float t = (float) row / BOARDHEIGHT;
+            for (int col = 0; col < BOARDWIDTH; col++) {
+                float[] InterpolatedColor = interpolate(Color1, Color2, t);
+                raster.setPixel(col, row, InterpolatedColor);
+            }
+        }
+
+        g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+
     }
 
     void drawCenteredCircle(Graphics g, int x, int y, int r) {
@@ -88,6 +112,16 @@ public class Board extends JPanel implements ActionListener {
 
     public static int getDotSize() {
         return PIXEL;
+    }
+
+    public float[] interpolate(int[] color1, int[] color2, float t) {
+        float[] InterpolatedColor = {0, 0, 0};
+
+        InterpolatedColor[0] = color1[0] + (color2[0] - color1[0]) * t;
+        InterpolatedColor[1] = color1[1] + (color2[1] - color1[1]) * t;
+        InterpolatedColor[2] = color1[2] + (color2[2] - color1[2]) * t;
+
+        return InterpolatedColor;
     }
 
 }
