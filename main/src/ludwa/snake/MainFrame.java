@@ -1,12 +1,15 @@
+package ludwa.snake;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Frame extends JFrame {
+public class MainFrame extends JFrame {
 
-    Frame() {
-        add(new Board());
+    public MainFrame(Config config) {
+        add(new Board(config));
         setResizable(false);
         pack();
+        setVisible(true);
 
         setTitle("Bouncing");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -16,7 +19,7 @@ public class Frame extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame frame = new Frame();
+                JFrame frame = new MainFrame(new Config());
                 frame.setVisible(true);
             }
         });

@@ -1,10 +1,10 @@
+package ludwa.snake;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class Board extends JPanel implements ActionListener {
 
@@ -19,15 +19,11 @@ public class Board extends JPanel implements ActionListener {
 
     private static int speed = 20;
 
-    private Circle circle = new Circle();
-
-    public Board() {
+    public Board(Config config) {
         setBackground(Color.BLACK);
         setFocusable(true);
 
         setPreferredSize(new Dimension(BOARDWIDTH, BOARDHEIGHT));
-
-        initializeGame();
     }
 
     @Override
@@ -42,7 +38,7 @@ public class Board extends JPanel implements ActionListener {
     void draw(Graphics g) {
 
         g.setColor(Color.red);
-        drawCenteredCircle(g, circle.getCircleX(), circle.getCircleY(), circle.getCircleR());
+
 
         Toolkit.getDefaultToolkit().sync();
     }
@@ -72,44 +68,6 @@ public class Board extends JPanel implements ActionListener {
         g.fillOval(x,y,r,r);
     }
 
-    void initializeGame() {
-        circle.setMovingUp(true);
-        circle.setMovingRight(true);
-        timer = new Timer(speed, this);
-        timer.start();
-    }
-
-    void checkCollisions() {
-        if (circle.getCircleY() >= BOARDHEIGHT) {
-            circle.setMovingDown(false);
-            circle.setMovingUp(true);
-        }
-
-        if (circle.getCircleY() < 0) {
-            circle.setMovingUp(false);
-            circle.setMovingDown(true);
-        }
-
-        if (circle.getCircleX() >= BOARDWIDTH) {
-            circle.setMovingRight(false);
-            circle.setMovingLeft(true);
-        }
-
-        if (circle.getCircleX() < 0) {
-            circle.setMovingLeft(false);
-            circle.setMovingRight(true);
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        checkCollisions();
-
-        circle.move();
-
-        repaint();
-    }
-
     public static int getDotSize() {
         return PIXEL;
     }
@@ -124,4 +82,8 @@ public class Board extends JPanel implements ActionListener {
         return InterpolatedColor;
     }
 
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+        System.out.println("working"); //todo
+    }
 }
