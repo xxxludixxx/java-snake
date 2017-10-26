@@ -9,9 +9,8 @@ public class MainFrame extends JFrame {
         add(new Board(config));
         setResizable(false);
         pack();
-        setVisible(true);
 
-        setTitle("Bouncing");
+        setTitle("Snake");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -19,7 +18,10 @@ public class MainFrame extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame frame = new MainFrame(new Config());
+                Config config = new Config(1200, 800);
+                Game game = new Game();
+
+                JFrame frame = new MainFrame(config);
                 frame.setVisible(true);
             }
         });
