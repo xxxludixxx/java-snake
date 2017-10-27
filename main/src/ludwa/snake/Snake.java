@@ -6,7 +6,8 @@ public class Snake {
 
     private ArrayList<Point> snakePositions = new ArrayList<>();
 
-    private enum Direction {
+    private enum Direction
+    {
         LEFTUP,
         LEFTDOWN,
         RIGHTUP,
@@ -20,16 +21,21 @@ public class Snake {
         this.snakeDirection = Direction.LEFTUP;
     }
 
-    public void initializePozition()
+    public void initializePosition(int maxX, int maxY)
     {
-        for (int i = 0; i <= 3 ; i++){
-            snakePositions.add(new Point());
+        for (int i = 0; i <= 3 ; i++) {
+            snakePositions.add(new Point(maxX + i, maxY + i));
         }
     }
 
     public void setDirection(Direction direction)
     {
         this.snakeDirection = direction;
+    }
+
+    public Point getHeadPosition()
+    {
+        return snakePositions.get(0);
     }
 
 }
