@@ -7,9 +7,16 @@ public class Point {
     protected int x;
     protected int y;
 
-    public Point(int maxX, int maxY)
+
+    public Point()
     {
-        random(maxX, maxY);
+
+    }
+
+    public Point(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
     }
 
     public void random(int maxX, int maxY)
@@ -28,5 +35,4 @@ public class Point {
     {
         return this.y;
     }
-
 }

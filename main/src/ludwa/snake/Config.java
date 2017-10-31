@@ -9,6 +9,7 @@ public class Config {
     private static int pixelSize;
     private static int totalPixels;
     private static int speed;
+    private static int startLength;
     private static Color backgroundColor;
     private static Color snakeHeadColor;
     private static Color snakeBodyColor;
@@ -20,6 +21,7 @@ public class Config {
         pixelSize = 16;
         totalPixels = (width * height) / (pixelSize * pixelSize);
         speed = s;
+        startLength = 3;
 
         backgroundColor = Color.BLACK;
         snakeHeadColor = Color.GREEN;
@@ -34,6 +36,7 @@ public class Config {
         pixelSize = 16;
         totalPixels = (width * height) / (pixelSize * pixelSize);
         speed = 60;
+        startLength = 3;
 
         backgroundColor = Color.BLACK;
         snakeHeadColor = Color.GREEN;
@@ -48,6 +51,7 @@ public class Config {
         pixelSize = 16;
         totalPixels = (width * height) / (pixelSize * pixelSize);
         speed = 60;
+        startLength = 3;
 
         backgroundColor = Color.BLACK;
         snakeHeadColor = Color.GREEN;
@@ -87,5 +91,9 @@ public class Config {
 
     public Color getSnakeBodyColor() {
         return snakeBodyColor;
+    }
+
+    public int getLength() {
+        return startLength;
     }
 }

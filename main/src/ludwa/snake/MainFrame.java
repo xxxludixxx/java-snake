@@ -24,7 +24,11 @@ public class MainFrame extends JFrame {
                 Config config = new Config(1200, 800);
                 Game game = new Game(config);
 
-                game.start();
+                try {
+                    game.start();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 JFrame frame = new MainFrame(config);
                 frame.setVisible(true);

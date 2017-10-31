@@ -46,6 +46,16 @@ public class Board extends JPanel implements ActionListener {
         repaint();
     }
 
+    private void drawSnake(Graphics g)
+    {
+
+    }
+
+    private void drawFood(Graphics g)
+    {
+
+    }
+
     private void drawEndGame(Graphics g)
     {
         String msg = "The Game is Over";
@@ -60,7 +70,6 @@ public class Board extends JPanel implements ActionListener {
 
         System.out.println("GAME OVER");
     }
-
 
     private class Keys extends KeyAdapter
     {
