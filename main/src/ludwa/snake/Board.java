@@ -46,14 +46,21 @@ public class Board extends JPanel implements ActionListener {
         repaint();
     }
 
-    private void drawSnake(Graphics g)
+    private void drawSnake(Graphics g, Snake snake)
     {
-
+        for (int i=0; i < snake.getJointsNumber(); i++) {
+            if (i == 0) {
+                drawPoint(g, snake.getHeadPosition(), Color.GREEN);
+            } else {
+                drawPoint(g, snake.getJointPosition(i), Color.BLUE);
+            }
+        }
     }
 
-    private void drawFood(Graphics g)
+    private void drawPoint(Graphics g, Point point, Color color)
     {
-
+        g.setColor(color);
+        g.fillRect(point.getX(),point.getY(), gameConfig.getPixelSize(), gameConfig.getPixelSize());
     }
 
     private void drawEndGame(Graphics g)

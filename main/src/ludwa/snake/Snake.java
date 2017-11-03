@@ -10,10 +10,10 @@ public class Snake {
 
     enum Direction
     {
-        LEFTUP,
-        LEFTDOWN,
-        RIGHTUP,
-        RIGHTDOWN
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
     }
 
     private Direction snakeDirection;
@@ -21,7 +21,7 @@ public class Snake {
     public Snake(int length)
     {
         this.length = length;
-        this.snakeDirection = Direction.LEFTUP;
+        this.snakeDirection = Direction.LEFT;
     }
 
     public void initializePosition(int maxX, int maxY)
@@ -49,6 +49,11 @@ public class Snake {
     public Point getHeadPosition()
     {
         return snakePositions.get(0);
+    }
+
+    public Point getJointPosition(int number)
+    {
+        return  snakePositions.get(number);
     }
 
     public int getJointsNumber()

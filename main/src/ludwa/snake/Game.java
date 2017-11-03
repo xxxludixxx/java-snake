@@ -1,7 +1,6 @@
 package ludwa.snake;
 
 import javax.swing.Timer;
-import java.io.IOException;
 
 public class Game {
 
@@ -32,13 +31,43 @@ public class Game {
         }
     }
 
+    private void checkSelfCollisions()
+    {
+        for (int i = this.snake.getJointsNumber(); i > 0; i--) {
+            if ((i > 5) && (this.snake.getHeadPosition() == this.snake.getJointPosition(i))) {
+                inGame = false;
+            }
+        }
+    }
+
     private void checkWallCollisions()
     {
-        for(int i = snake.getJointsNumber(); i > 0; i--) {
-            // Snake can't 'bite' himself if it's shorter than 5
-            if(i  > 5 ) {
-                this.inGame = false;
-            }
+        if (snake.getHeadPosition().y >= config.getHeight()) {
+            inGame = false;
+        }
+
+        if (snake.getHeadPosition().y < 0) {
+            inGame = false;
+        }
+
+        if (snake.getHeadPosition().x >= config.getWidth()) {
+            inGame = false;
+        }
+
+        if (snake.getHeadPosition().x < 0) {
+            inGame = false;
+        }
+
+    }
+
+    public void checkCollisions()
+    {
+        checkSelfCollisions();
+        checkWallCollisions();
+        checkFoodCollisions();
+
+        if (!inGame) {
+            timer.stop();
         }
     }
 
@@ -46,7 +75,7 @@ public class Game {
         if(!inGame) {
             // Initialize Snake
             snake.initializePosition((config.getHeight() / 2), (config.getWidth() / 2));
-            snake.setDirection(Snake.Direction.LEFTUP);
+            snake.setDirection(Snake.Direction.LEFT);
             // Initialize food
             food.initializePosition((config.getHeight() / 2), (config.getWidth() / 2));
             // Mark in game
