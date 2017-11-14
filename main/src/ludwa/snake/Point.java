@@ -4,19 +4,13 @@ import java.util.Random;
 
 public class Point {
 
-    protected int x;
-    protected int y;
-
-
-    public Point()
-    {
-
-    }
+    private int x;
+    private int y;
 
     public Point(int x, int y)
     {
-        this.x = x;
-        this.y = y;
+        setX(x);
+        setY(y);
     }
 
     public void random(int maxX, int maxY)
@@ -34,5 +28,15 @@ public class Point {
     protected int getY()
     {
         return this.y;
+    }
+
+    public void setX(int x)
+    {
+        this.x = x;
+    }
+
+    public void setY(int y)
+    {
+        this.y = y;
     }
 }

@@ -1,6 +1,7 @@
 package ludwa.snake;
 
 import javax.swing.Timer;
+import java.awt.*;
 
 public class Game {
 
@@ -16,8 +17,8 @@ public class Game {
     {
         this.snakeMover = new SnakeMover();
         this.config = config;
-        this.board = new Board(config);
         this.snake = new Snake(config.getLength());
+        this.board = new Board(config, this.snake);
         this.food = new Food();
     }
 
@@ -42,22 +43,21 @@ public class Game {
 
     private void checkWallCollisions()
     {
-        if (snake.getHeadPosition().y >= config.getHeight()) {
+        if (snake.getHeadPosition().getY() >= config.getHeight()) {
             inGame = false;
         }
 
-        if (snake.getHeadPosition().y < 0) {
+        if (snake.getHeadPosition().getY() < 0) {
             inGame = false;
         }
 
-        if (snake.getHeadPosition().x >= config.getWidth()) {
+        if (snake.getHeadPosition().getX() >= config.getWidth()) {
             inGame = false;
         }
 
-        if (snake.getHeadPosition().x < 0) {
+        if (snake.getHeadPosition().getX() < 0) {
             inGame = false;
         }
-
     }
 
     public void checkCollisions()
@@ -85,14 +85,19 @@ public class Game {
             this.timer.start();*/
 
             System.out.println(snake);
-            System.out.println("Snake X position = " + snake.getHeadPosition().x);
-            System.out.println("Snake Y position = " + snake.getHeadPosition().y);
+            System.out.println("Snake X position = " + snake.getHeadPosition().getX());
+            System.out.println("Snake Y position = " + snake.getHeadPosition().getY());
             System.out.println("Snake number of joints = " + snake.getJointsNumber());
             System.out.println(food);
-            System.out.println("Food X position = " + food.getFoodPosition().x);
-            System.out.println("Food Y position = " + food.getFoodPosition().y);
+            System.out.println("Food X position = " + food.getFoodPosition().getX());
+            System.out.println("Food Y position = " + food.getFoodPosition().getY());
         } else {
             throw new InterruptedException("The game has already started...");
         }
+    }
+
+    public Board getBoard()
+    {
+        return this.board;
     }
 }

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Snake {
 
     private ArrayList<Point> snakePositions = new ArrayList<>();
-    private int length;
 
+    private int length;
 
     enum Direction
     {
@@ -27,12 +27,15 @@ public class Snake {
     public void initializePosition(int maxX, int maxY)
     {
         // Initialize head
-        Point head = new Point();
+        Point head = new Point(maxX, maxY);
         head.random(maxX, maxY);
         snakePositions.add(head);
 
         for (int i = 1; i <= this.length ; i++) {
-            snakePositions.add(new Point((head.x + i), (head.y + i)));
+
+            Point joint = new Point(head.getX() + i, head.getY() + 1);
+
+            snakePositions.add(joint);
         }
     }
 
@@ -63,7 +66,7 @@ public class Snake {
 
     public void addJoint()
     {
-        snakePositions.add(new Point((getHeadPosition().x + snakePositions.size()), (getHeadPosition().y + snakePositions.size())));
+        /*snakePositions.add(new Point((getHeadPosition().x + snakePositions.size()), (getHeadPosition().y + snakePositions.size())));*/
     }
 
 }

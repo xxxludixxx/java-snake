@@ -13,9 +13,12 @@ public class Board extends JPanel implements ActionListener {
 
     private Config gameConfig;
 
-    public Board(Config config)
+    private Snake snake;
+
+    public Board(Config config, Snake snake)
     {
         this.gameConfig = config;
+        this.snake = snake;
 
         addKeyListener(new Keys());
         setBackground(gameConfig.getBackgroundColor());
@@ -32,11 +35,11 @@ public class Board extends JPanel implements ActionListener {
         draw(g);
     }
 
-    void draw(Graphics g)
+    public void draw(Graphics g)
     {
-        drawEndGame(g);
+        /*drawEndGame(g);*/
+        drawPoint(g, snake.getHeadPosition(), Color.RED);
         Toolkit.getDefaultToolkit().sync();
-        return;
     }
 
     @Override
@@ -46,7 +49,7 @@ public class Board extends JPanel implements ActionListener {
         repaint();
     }
 
-    private void drawSnake(Graphics g, Snake snake)
+    private void drawSnake(Graphics g)
     {
         for (int i=0; i < snake.getJointsNumber(); i++) {
             if (i == 0) {

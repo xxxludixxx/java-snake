@@ -7,7 +7,6 @@ public class MainFrame extends JFrame {
 
     public MainFrame(Config config)
     {
-        add(new Board(config));
         setResizable(false);
         pack();
 
@@ -31,7 +30,9 @@ public class MainFrame extends JFrame {
                 }
 
                 JFrame frame = new MainFrame(config);
+                frame.add(game.getBoard());
                 frame.setVisible(true);
+                frame.pack();
             }
         });
     }

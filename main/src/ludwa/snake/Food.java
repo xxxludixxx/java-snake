@@ -7,6 +7,8 @@ public class Food {
     public void randomFoodPosition(int maxX, int maxY)
     {
         this.foodPosition = new Point(maxX, maxY);
+        this.foodPosition.setX(maxX);
+        this.foodPosition.setY(maxY);
     }
 
     public Point getFoodPosition()
