@@ -33,7 +33,7 @@ public class Snake {
 
         for (int i = 1; i <= this.length ; i++) {
 
-            Point joint = new Point(head.getX() + i, head.getY() + 1);
+            Point joint = new Point(head.getX() + i * 16, head.getY());
 
             snakePositions.add(joint);
         }

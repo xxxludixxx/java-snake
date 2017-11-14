@@ -38,7 +38,7 @@ public class Board extends JPanel implements ActionListener {
     public void draw(Graphics g)
     {
         /*drawEndGame(g);*/
-        drawPoint(g, snake.getHeadPosition(), Color.RED);
+        drawSnake(g);
         Toolkit.getDefaultToolkit().sync();
     }
 
