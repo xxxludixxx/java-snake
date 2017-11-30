@@ -13,6 +13,7 @@ public class Config {
     private static Color backgroundColor;
     private static Color snakeHeadColor;
     private static Color snakeBodyColor;
+    private static Color foodColor;
 
     public Config(int w, int h, int s)
     {
@@ -26,7 +27,7 @@ public class Config {
         backgroundColor = Color.BLACK;
         snakeHeadColor = Color.GREEN;
         snakeBodyColor = Color.BLUE;
-
+        foodColor = Color.RED;
     }
 
     public Config(int w, int h)
@@ -41,7 +42,7 @@ public class Config {
         backgroundColor = Color.BLACK;
         snakeHeadColor = Color.GREEN;
         snakeBodyColor = Color.BLUE;
-
+        foodColor = Color.RED;
     }
 
     public Config()
@@ -56,6 +57,7 @@ public class Config {
         backgroundColor = Color.BLACK;
         snakeHeadColor = Color.GREEN;
         snakeBodyColor = Color.BLUE;
+        foodColor = Color.RED;
     }
 
     public int getHeight()
@@ -91,6 +93,10 @@ public class Config {
 
     public Color getSnakeBodyColor() {
         return snakeBodyColor;
+    }
+
+    public Color getFoodColor() {
+        return foodColor;
     }
 
     public int getLength() {

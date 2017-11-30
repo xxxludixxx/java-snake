@@ -1,7 +1,6 @@
 package ludwa.snake;
 
 import javax.swing.Timer;
-import java.awt.*;
 
 public class Game {
 
@@ -18,8 +17,8 @@ public class Game {
         this.snakeMover = new SnakeMover();
         this.config = config;
         this.snake = new Snake(config.getLength());
-        this.board = new Board(config, this.snake);
         this.food = new Food();
+        this.board = new Board(config, this.snake, this.food);
     }
 
     private void checkFoodCollisions()
@@ -83,14 +82,13 @@ public class Game {
             // Start timer
             /*this.timer = new Timer(this.config.getSpeed(), this.board);
             this.timer.start();*/
+            System.out.println("Snake X position = " + snake.getHeadPosition().getX() + "\n");
+            System.out.println("Snake Y position = " + snake.getHeadPosition().getY() + "\n");
 
-            System.out.println(snake);
-            System.out.println("Snake X position = " + snake.getHeadPosition().getX());
-            System.out.println("Snake Y position = " + snake.getHeadPosition().getY());
-            System.out.println("Snake number of joints = " + snake.getJointsNumber());
-            System.out.println(food);
-            System.out.println("Food X position = " + food.getFoodPosition().getX());
-            System.out.println("Food Y position = " + food.getFoodPosition().getY());
+            System.out.println("Snake number of joints = " + snake.getJointsNumber() + "\n");
+
+            System.out.println("Food X position = " + food.getFoodPosition().getX() + "\n");
+            System.out.println("Food Y position = " + food.getFoodPosition().getY() + "\n");
         } else {
             throw new InterruptedException("The game has already started...");
         }

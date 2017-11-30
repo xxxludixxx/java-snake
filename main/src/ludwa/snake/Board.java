@@ -15,10 +15,13 @@ public class Board extends JPanel implements ActionListener {
 
     private Snake snake;
 
-    public Board(Config config, Snake snake)
+    private Food food;
+
+    public Board(Config config, Snake snake, Food food)
     {
         this.gameConfig = config;
         this.snake = snake;
+        this.food = food;
 
         addKeyListener(new Keys());
         setBackground(gameConfig.getBackgroundColor());
@@ -37,8 +40,8 @@ public class Board extends JPanel implements ActionListener {
 
     public void draw(Graphics g)
     {
-        /*drawEndGame(g);*/
         drawSnake(g);
+        drawFood(g, food);
         Toolkit.getDefaultToolkit().sync();
     }
 
@@ -66,6 +69,11 @@ public class Board extends JPanel implements ActionListener {
         g.fillRect(point.getX(),point.getY(), gameConfig.getPixelSize(), gameConfig.getPixelSize());
     }
 
+    private void drawFood(Graphics g, Food food)
+    {
+        drawPoint(g, food.getFoodPosition(), gameConfig.getFoodColor());
+    }
+
     private void drawEndGame(Graphics g)
     {
         String msg = "The Game is Over";
@@ -89,6 +97,7 @@ public class Board extends JPanel implements ActionListener {
 
             switch (key) {
                 case KeyEvent.VK_UP:
+                    // SnakeMover.moveUp(snake);
                     System.out.println("You pressed the 'Up Arrow' key.");
                     break;
                 case KeyEvent.VK_DOWN:

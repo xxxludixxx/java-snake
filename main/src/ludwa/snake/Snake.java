@@ -6,6 +6,8 @@ public class Snake {
 
     private ArrayList<Point> snakePositions = new ArrayList<>();
 
+    private Direction snakeDirection;
+
     private int length;
 
     enum Direction
@@ -15,8 +17,6 @@ public class Snake {
         LEFT,
         RIGHT
     }
-
-    private Direction snakeDirection;
 
     public Snake(int length)
     {
@@ -54,6 +54,11 @@ public class Snake {
         return snakePositions.get(0);
     }
 
+    public void setHeadPosition(Point head)
+    {
+            this.snakePositions.set(0, head);
+    }
+
     public Point getJointPosition(int number)
     {
         return  snakePositions.get(number);
@@ -66,7 +71,7 @@ public class Snake {
 
     public void addJoint()
     {
-        /*snakePositions.add(new Point((getHeadPosition().x + snakePositions.size()), (getHeadPosition().y + snakePositions.size())));*/
+
     }
 
 }
