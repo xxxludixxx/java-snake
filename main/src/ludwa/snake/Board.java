@@ -48,7 +48,7 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
-        System.out.println("Doing my stuff."); //todo
+        SnakeMover.move(snake);
         repaint();
     }
 
@@ -97,17 +97,16 @@ public class Board extends JPanel implements ActionListener {
 
             switch (key) {
                 case KeyEvent.VK_UP:
-                    // SnakeMover.moveUp(snake);
-                    System.out.println("You pressed the 'Up Arrow' key.");
+                    snake.setDirection(Snake.Direction.UP);
                     break;
                 case KeyEvent.VK_DOWN:
-                    System.out.println("You pressed the 'Down Arrow' key.");
+                    snake.setDirection(Snake.Direction.DOWN);
                     break;
                 case KeyEvent.VK_LEFT:
-                    System.out.println("You pressed the 'Left Arrow' key.");
+                    snake.setDirection(Snake.Direction.LEFT);
                     break;
                 case KeyEvent.VK_RIGHT:
-                    System.out.println("You pressed the 'Right Arrow' key.");
+                    snake.setDirection(Snake.Direction.RIGHT);
                     break;
             }
         }

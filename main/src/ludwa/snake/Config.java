@@ -36,7 +36,7 @@ public class Config {
         height = h;
         pixelSize = 16;
         totalPixels = (width * height) / (pixelSize * pixelSize);
-        speed = 60;
+        speed = 10;
         startLength = 3;
 
         backgroundColor = Color.BLACK;
@@ -51,7 +51,7 @@ public class Config {
         height = 762;
         pixelSize = 16;
         totalPixels = (width * height) / (pixelSize * pixelSize);
-        speed = 60;
+        speed = 120;
         startLength = 3;
 
         backgroundColor = Color.BLACK;

@@ -4,7 +4,7 @@ import javax.swing.Timer;
 
 public class Game {
 
-    private boolean inGame;
+    public boolean inGame;
     private Timer timer;
     private Snake snake;
     private Food food;
@@ -27,7 +27,7 @@ public class Game {
             System.out.println("Successfully eaten food");
             // Add points #todo
             snake.addJoint();
-            /*food.randomFoodPosition();*/
+            food.randomFoodPosition(config.getHeight(), config.getWidth());
         }
     }
 
@@ -80,8 +80,8 @@ public class Game {
             // Mark in game
             this.inGame = true;
             // Start timer
-            /*this.timer = new Timer(this.config.getSpeed(), this.board);
-            this.timer.start();*/
+            this.timer = new Timer(this.config.getSpeed(), this.board);
+            this.timer.start();
             System.out.println("Snake X position = " + snake.getHeadPosition().getX() + "\n");
             System.out.println("Snake Y position = " + snake.getHeadPosition().getY() + "\n");
 
@@ -97,5 +97,10 @@ public class Game {
     public Board getBoard()
     {
         return this.board;
+    }
+
+    public boolean isInGame()
+    {
+        return inGame;
     }
 }
