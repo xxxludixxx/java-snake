@@ -36,7 +36,7 @@ public class Config {
         height = h;
         pixelSize = 16;
         totalPixels = (width * height) / (pixelSize * pixelSize);
-        speed = 10;
+        speed = 200;
         startLength = 3;
 
         backgroundColor = Color.BLACK;

@@ -14,10 +14,10 @@ public class Game {
 
     public Game(Config config)
     {
-        this.snakeMover = new SnakeMover();
         this.config = config;
         this.snake = new Snake(config.getLength());
         this.food = new Food();
+        this.snakeMover = new SnakeMover(config);
         this.board = new Board(config, this.snake, this.food);
     }
 

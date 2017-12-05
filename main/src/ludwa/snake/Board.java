@@ -9,8 +9,6 @@ import java.awt.event.KeyEvent;
 
 public class Board extends JPanel implements ActionListener {
 
-    private Timer timer;
-
     private Config gameConfig;
 
     private Snake snake;
@@ -48,17 +46,17 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
-        SnakeMover.move(snake);
+        SnakeMover.move(gameConfig, snake);
         repaint();
     }
 
     private void drawSnake(Graphics g)
     {
-        for (int i=0; i < snake.getJointsNumber(); i++) {
+        for (int i = 0; i < snake.getJointsNumber(); i++) {
             if (i == 0) {
-                drawPoint(g, snake.getHeadPosition(), Color.GREEN);
+                drawPoint(g, snake.getHeadPosition(), gameConfig.getSnakeHeadColor());
             } else {
-                drawPoint(g, snake.getJointPosition(i), Color.BLUE);
+                drawPoint(g, snake.getJointPosition(i), gameConfig.getSnakeBodyColor());
             }
         }
     }

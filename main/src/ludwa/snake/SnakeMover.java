@@ -2,28 +2,38 @@ package ludwa.snake;
 
 public class SnakeMover {
 
-    public static void move(Snake snake)
+    private Config config;
+
+    public SnakeMover(Config config)
     {
-        Point newPosition = snake.getHeadPosition();
-        // UP
-        if (snake.getDirection() == Snake.Direction.UP) {
-            newPosition.setY(snake.getHeadPosition().getY() - 1);
-        }
-        // DOWN
-        if (snake.getDirection() == Snake.Direction.DOWN) {
-            newPosition.setY(snake.getHeadPosition().getY() + 1);
+        this.config = config;
+    }
+
+    public static void move(Config gameConfig, Snake snake)
+    {
+        Point newHeadPosition = snake.getHeadPosition();
+
+        switch (snake.getDirection()) {
+            case UP:
+                newHeadPosition.setY(newHeadPosition.getY() - gameConfig.getPixelSize());
+                break;
+            case DOWN:
+                newHeadPosition.setY(newHeadPosition.getY() + gameConfig.getPixelSize());
+                break;
+            case LEFT:
+                newHeadPosition.setX(newHeadPosition.getX() - gameConfig.getPixelSize());
+                break;
+            case RIGHT:
+                newHeadPosition.setX(newHeadPosition.getX() + gameConfig.getPixelSize());
+                break;
         }
 
-        if (snake.getDirection() == Snake.Direction.LEFT) {
-            newPosition.setX(snake.getHeadPosition().getX() - 1);
+        for (int i = (snake.getJointsNumber() - 1); i > 0; i--)
+        {
+            snake.setJointPosition(i, snake.getJointPosition(i - 1));
         }
 
-        if (snake.getDirection() == Snake.Direction.RIGHT) {
-            newPosition.setX(snake.getHeadPosition().getX() + 1);
-        }
-
-        snake.setHeadPosition(newPosition);
-
+        snake.setHeadPosition(newHeadPosition);
     }
 
 }

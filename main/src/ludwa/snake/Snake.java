@@ -54,10 +54,12 @@ public class Snake {
         return snakePositions.get(0);
     }
 
-    public void setHeadPosition(Point head)
+    public void setHeadPosition(Point newPosition)
     {
-            this.snakePositions.set(0, head);
+            this.snakePositions.set(0, newPosition);
     }
+
+    public void setJointPosition(int number, Point newPosition) { this.snakePositions.set(number, newPosition); }
 
     public Point getJointPosition(int number)
     {
