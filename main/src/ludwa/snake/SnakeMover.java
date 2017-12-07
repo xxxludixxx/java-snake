@@ -9,7 +9,7 @@ public class SnakeMover {
         this.config = config;
     }
 
-    public static void move(Config gameConfig, Snake snake)
+    public Snake move(Config gameConfig, Snake snake)
     {
         Point newHeadPosition = snake.getHeadPosition();
 
@@ -34,6 +34,8 @@ public class SnakeMover {
         }
 
         snake.setHeadPosition(newHeadPosition);
+
+        return snake;
     }
 
 }

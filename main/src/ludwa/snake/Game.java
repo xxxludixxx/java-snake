@@ -1,8 +1,10 @@
 package ludwa.snake;
 
 import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Game {
+public class Game implements ActionListener {
 
     public boolean inGame;
     private Timer timer;
@@ -80,7 +82,7 @@ public class Game {
             // Mark in game
             this.inGame = true;
             // Start timer
-            this.timer = new Timer(this.config.getSpeed(), this.board);
+            this.timer = new Timer(this.config.getSpeed(), this);
             this.timer.start();
             System.out.println("Snake X position = " + snake.getHeadPosition().getX() + "\n");
             System.out.println("Snake Y position = " + snake.getHeadPosition().getY() + "\n");
@@ -102,5 +104,23 @@ public class Game {
     public boolean isInGame()
     {
         return inGame;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+        if(!inGame) {
+
+        }
+
+        this.snake = snakeMover.move(config, snake);
+        System.out.println("Current snake position:\n");
+        for (int i = (snake.getJointsNumber() - 1); i >= 0; i--) {
+            System.out.println("SnakeX: " + snake.getJointPosition(i).getX());
+            System.out.println("SnakeY: " + snake.getJointPosition(i).getY());
+        }
+
+        checkCollisions();
+
+        this.board.repaint();
     }
 }

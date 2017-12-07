@@ -2,12 +2,10 @@ package ludwa.snake;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Board extends JPanel implements ActionListener {
+public class Board extends JPanel {
 
     private Config gameConfig;
 
@@ -33,26 +31,23 @@ public class Board extends JPanel implements ActionListener {
     {
         super.paintComponent(g);
 
-        draw(g);
+        draw(g, true);
     }
 
-    public void draw(Graphics g)
+    public void draw(Graphics g, boolean inGame)
     {
+        if(!inGame) {
+            drawEndGame(g);
+            return;
+        }
         drawSnake(g);
         drawFood(g, food);
         Toolkit.getDefaultToolkit().sync();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent)
-    {
-        SnakeMover.move(gameConfig, snake);
-        repaint();
-    }
-
     private void drawSnake(Graphics g)
     {
-        for (int i = 0; i < snake.getJointsNumber(); i++) {
+        for (int i = 0; i < snake.getJointsNumber();i++) {
             if (i == 0) {
                 drawPoint(g, snake.getHeadPosition(), gameConfig.getSnakeHeadColor());
             } else {
@@ -72,7 +67,7 @@ public class Board extends JPanel implements ActionListener {
         drawPoint(g, food.getFoodPosition(), gameConfig.getFoodColor());
     }
 
-    private void drawEndGame(Graphics g)
+    public void drawEndGame(Graphics g)
     {
         String msg = "The Game is Over";
 
