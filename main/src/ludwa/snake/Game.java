@@ -27,7 +27,6 @@ public class Game implements ActionListener {
     {
         if(snake.getHeadPosition() == food.getFoodPosition()) {
             System.out.println("Successfully eaten food");
-            // Add points #todo
             snake.addJoint();
             food.randomFoodPosition(config.getHeight(), config.getWidth());
         }
@@ -81,16 +80,10 @@ public class Game implements ActionListener {
             food.initializePosition((config.getHeight() / 2), (config.getWidth() / 2));
             // Mark in game
             this.inGame = true;
+
             // Start timer
-            this.timer = new Timer(this.config.getSpeed(), this);
-            this.timer.start();
-            System.out.println("Snake X position = " + snake.getHeadPosition().getX() + "\n");
-            System.out.println("Snake Y position = " + snake.getHeadPosition().getY() + "\n");
-
-            System.out.println("Snake number of joints = " + snake.getJointsNumber() + "\n");
-
-            System.out.println("Food X position = " + food.getFoodPosition().getX() + "\n");
-            System.out.println("Food Y position = " + food.getFoodPosition().getY() + "\n");
+            /*this.timer = new Timer(this.config.getSpeed(), this);
+            this.timer.start();*/
         } else {
             throw new InterruptedException("The game has already started...");
         }
@@ -108,9 +101,9 @@ public class Game implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        if(!inGame) {
+        /*if(!inGame) {
 
-        }
+        }*/
 
         this.snake = snakeMover.move(config, snake);
         System.out.println("Current snake position:\n");

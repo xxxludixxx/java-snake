@@ -20,7 +20,7 @@ public class MainFrame extends JFrame {
             @Override
             public void run()
             {
-                Config config = new Config(648, 480);
+                Config config = Config.getInstance();
                 Game game = new Game(config);
 
                 try {
@@ -36,5 +36,4 @@ public class MainFrame extends JFrame {
             }
         });
     }
-
 }

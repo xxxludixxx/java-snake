@@ -4,6 +4,8 @@ import java.awt.*;
 
 public class Config {
 
+    private static Config instance = null;
+
     private static int width;
     private static int height;
     private static int pixelSize;
@@ -15,7 +17,7 @@ public class Config {
     private static Color snakeBodyColor;
     private static Color foodColor;
 
-    public Config(int w, int h, int s)
+    protected Config(int w, int h, int s)
     {
         width = w;
         height = h;
@@ -30,7 +32,7 @@ public class Config {
         foodColor = Color.RED;
     }
 
-    public Config(int w, int h)
+    protected Config(int w, int h)
     {
         width = w;
         height = h;
@@ -45,19 +47,28 @@ public class Config {
         foodColor = Color.RED;
     }
 
-    public Config()
+    protected Config()
     {
         width = 1200;
         height = 762;
         pixelSize = 16;
         totalPixels = (width * height) / (pixelSize * pixelSize);
-        speed = 120;
+        speed = 1200;
         startLength = 3;
 
         backgroundColor = Color.BLACK;
         snakeHeadColor = Color.GREEN;
         snakeBodyColor = Color.BLUE;
         foodColor = Color.RED;
+    }
+
+    public static Config getInstance()
+    {
+        if(instance == null) {
+            instance = new Config();
+        }
+
+        return instance;
     }
 
     public int getHeight()

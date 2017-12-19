@@ -3,7 +3,6 @@ package ludwa.snake;
 import java.util.Random;
 
 public class Point {
-
     private int x;
     private int y;
 
@@ -38,5 +37,12 @@ public class Point {
     public void setY(int y)
     {
         this.y = y;
+    }
+
+    public String getPositions()
+    {
+        String positions = "x:" + getX() + "|y:" + getY();
+
+        return positions;
     }
 }

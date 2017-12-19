@@ -8,10 +8,12 @@ import java.awt.event.KeyEvent;
 public class Board extends JPanel {
 
     private Config gameConfig;
-
     private Snake snake;
-
     private Food food;
+    private Image boardImage;
+    private Graphics boardGraphics;
+
+    /*private boolean inGame;*/
 
     public Board(Config config, Snake snake, Food food)
     {
@@ -23,7 +25,7 @@ public class Board extends JPanel {
         setBackground(gameConfig.getBackgroundColor());
         setFocusable(true);
 
-        setPreferredSize(new Dimension(gameConfig.getWidth(), gameConfig.getHeight()));
+        super.setPreferredSize(new Dimension(gameConfig.getWidth(), gameConfig.getHeight()));
     }
 
     @Override
@@ -31,23 +33,23 @@ public class Board extends JPanel {
     {
         super.paintComponent(g);
 
-        draw(g, true);
+        draw(g);
     }
 
-    public void draw(Graphics g, boolean inGame)
+    public void draw(Graphics g)
     {
-        if(!inGame) {
+        //if(!inGame()) {
             drawEndGame(g);
-            return;
-        }
-        drawSnake(g);
-        drawFood(g, food);
+          /*  return;*/
+        //}
+        /*drawSnake(g, this.snake);
+        drawFood(g, food);*/
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void drawSnake(Graphics g)
+    private void drawSnake(Graphics g, Snake snake)
     {
-        for (int i = 0; i < snake.getJointsNumber();i++) {
+        for (int i = 0; i < snake.getJointsNumber(); i++) {
             if (i == 0) {
                 drawPoint(g, snake.getHeadPosition(), gameConfig.getSnakeHeadColor());
             } else {

@@ -28,12 +28,19 @@ public class SnakeMover {
                 break;
         }
 
-        for (int i = (snake.getJointsNumber() - 1); i > 0; i--)
-        {
-            snake.setJointPosition(i, snake.getJointPosition(i - 1));
+
+
+        // Testing purposes
+        System.out.println("X: " + snake.getHeadPosition().getX() + " Y: " + snake.getHeadPosition().getY());
+
+        for (int i = snake.getJointsNumber() - 1; i > 0; i++) {
+            snake.setJointPosition(i, snake.getJointPosition( i - 1));
         }
 
         snake.setHeadPosition(newHeadPosition);
+
+        // Testing purposes
+        /*System.out.println("X: " + snake.getHeadPosition().getX() + " Y: " + snake.getHeadPosition().getY());*/
 
         return snake;
     }

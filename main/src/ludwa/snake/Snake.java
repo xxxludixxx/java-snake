@@ -36,6 +36,8 @@ public class Snake {
             Point joint = new Point(head.getX() + i * 16, head.getY());
 
             snakePositions.add(joint);
+
+            setDirection(Direction.LEFT);
         }
     }
 
@@ -73,9 +75,7 @@ public class Snake {
 
     public void addJoint()
     {
-        Point joint = new Point(getHeadPosition().getX() + (snakePositions.size() * 16), getHeadPosition().getY());
 
-        snakePositions.add(joint);
     }
 
 }
